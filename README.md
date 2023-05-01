@@ -1,4 +1,4 @@
-## Unbound Static Build
+## Unbound Master Static Build
 This project retrieves Unbound's master branch and performs static compilation to generate software builds on an ad-hoc basis.
 
 To ensure that your workflow runs correctly, you must use the following parameters in the config.yaml file:
