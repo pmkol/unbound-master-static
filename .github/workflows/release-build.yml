@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  watch:
+    types: started
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Build unbound
+      run: |
+        echo "/usr/local/unbound" | bash unbound_static_build.sh
+        pushd /usr/local
+          sudo tar -zcf unbound-master-linux-x64.tar.gz unbound
+        popd
+
+    - name: Get latest version
+      run: |
+        VERSION=$(curl -s https://api.github.com/repos/NLnetLabs/unbound/commits/master | grep -oP '"sha": "\K(.*)(?=")' | head -1)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        name: unbound-master-static
+        allowUpdates: true
+        tag: static
+        commit: master
+        replacesArtifacts: true
+        token: ${{ secrets.unbound_workflow_token }}
+        artifacts: /usr/local/unbound-master-linux-x64.tar.gz
+        draft: false
+        body: |
+          Latest commit from the master branch:
+          https://github.com/NLnetLabs/unbound/commit/${{ env.VERSION }}
+
+    - name: Set release output
+      run: echo "release_id=${{ steps.create_release.outputs.release_id }}" >> $GITHUB_ENV
