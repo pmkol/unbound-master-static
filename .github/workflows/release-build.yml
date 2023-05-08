@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    if: github.event_name == 'watch' && github.event.action == 'started' && github.event.repository.owner.id == github.event.sender.id
+    if: github.event_name == 'schedule' || (github.event.repository.owner.id == github.event.sender.id)
     name: Build
     runs-on: ubuntu-latest
 
