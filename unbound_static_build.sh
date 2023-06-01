@@ -126,6 +126,7 @@ fi
 
 # 编译 unbound
 cd $TOP/unbound-*
+sed -i '/\/\* but ignore entirely empty messages, noerror\/nodata has a soa/,/return RESPONSE_TYPE_THROWAWAY;/d' ./iterator/iter_resptype.c
 make clean >/dev/null 2>&1
 ./configure \
   --prefix=$INSTALL_DIR \
