@@ -21,8 +21,8 @@ unbound_source() {
 }
 
 openssl_source() {
-	wget -q https://www.openssl.org/source/openssl-1.1.1t.tar.gz
-	tar -zxf openssl-1.1.1t.tar.gz && rm -f openssl-1.1.1t.tar.gz
+	wget -q https://www.openssl.org/source/openssl-1.1.1u.tar.gz
+	tar -zxf openssl-1.1.1u.tar.gz && rm -f openssl-1.1.1u.tar.gz
 }
 
 libhiredis_source() {
@@ -36,8 +36,8 @@ libevent_source() {
 }
 
 nghttp2_source() {
-	wget -q https://github.com/nghttp2/nghttp2/releases/download/v1.52.0/nghttp2-1.52.0.tar.gz
-	tar -zxf nghttp2-1.52.0.tar.gz && rm -f nghttp2-1.52.0.tar.gz
+	wget -q https://github.com/nghttp2/nghttp2/releases/download/v1.54.0/nghttp2-1.54.0.tar.gz
+	tar -zxf nghttp2-1.54.0.tar.gz && rm -f nghttp2-1.54.0.tar.gz
 }
 
 expat_source() {
