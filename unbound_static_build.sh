@@ -16,13 +16,13 @@ fi
 
 # 源码
 unbound_source() {
-	wget -q https://github.com/NLnetLabs/unbound/archive/refs/heads/master.zip -O unbound-master.zip
+	wget -q https://github.com/NLnetLabs/unbound/archive/refs/heads/branch-1.19.0.zip -O unbound-master.zip
 	unzip unbound-master.zip && rm -f unbound-master.zip
 }
 
 openssl_source() {
-	wget -q https://www.openssl.org/source/openssl-1.1.1u.tar.gz
-	tar -zxf openssl-1.1.1u.tar.gz && rm -f openssl-1.1.1u.tar.gz
+	wget -q https://www.openssl.org/source/openssl-1.1.1w.tar.gz
+	tar -zxf openssl-1.1.1w.tar.gz && rm -f openssl-1.1.1w.tar.gz
 }
 
 libhiredis_source() {
